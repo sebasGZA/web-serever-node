@@ -1,19 +1,19 @@
-const http = require("http");
+const express = require("express");
 
-http
-  .createServer((req, res) => {
-    res.setHeader("Content-Disposition", "attachment; filename=list.csv");
-    res.writeHead(200, { "Content-Type": "application/csv" });
+const app = express();
 
-    res.write("id, name\n");
-    res.write("1, Anna\n");
-    res.write("2, Sebas\n");
-    res.write("3, John\n");
-    res.write("4, Christopher\n");
-    res.write("5, Carl\n");
+app.get("/", (req, res) => {
+  res.send("home Page");
+});
 
-    res.end();
-  })
-  .listen(3000);
+app.get("/hello-world", (req, res) => {
+  res.send("Hello world");
+});
 
-console.log("Listing on port 3000!!!");
+app.get("*", (req, res) => {
+  res.send("404 | Page not found");
+});
+
+app.listen(3000, () => {
+  console.log("Listening on port 3000");
+});
