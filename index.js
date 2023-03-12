@@ -2,7 +2,10 @@ const express = require("express");
 
 const app = express();
 const port = 3000;
+const hbs = require("hbs");
 
+//Handlebars
+hbs.registerPartials(__dirname + "/views/partials");
 app.set("view engine", "hbs");
 
 //Middleware
@@ -15,11 +18,15 @@ app.get("/", (req, res) => {
 });
 
 app.get("/generic", (req, res) => {
-  res.render("generic");
+  res.render("generic", {
+    title: "Node - Express",
+  });
 });
 
 app.get("/elements", (req, res) => {
-  res.render("elements");
+  res.render("elements", {
+    title: "Node - Express",
+  });
 });
 
 // app.get("/generic", (req, res) => {
